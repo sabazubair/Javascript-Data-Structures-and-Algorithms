@@ -15,7 +15,7 @@ class Queue {
   add(record) { // add method will be called with some record that will need to be stored in our array
     this.data.unshift(record); // insert record to front of array
   }
-  remove(record) { // remember to return
+  remove(record) { // removes last record in queue; we may want to work with removed record, add return
     return this.data.pop(record);
   }
 }
