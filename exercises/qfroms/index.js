@@ -14,6 +14,37 @@
 
 const Stack = require('./stack');
 
-class Queue {}
+class Queue {
+  constructor() { // every time this instance of queue is created, we want to initialize two queues, i.e. use constructor method
+    this.first = new Stack(); // bind or assign stacks to this Queue class
+    this.second = new Stack();
+  }
+
+  add(record) {
+    this.first.push(record); // push rec into first stack
+  }
+
+  remove() {
+    while(this.first.peek()){
+      this.second.push(this.first.pop());
+    }
+    const record = this.second.pop();
+    while(this.second.peek()) {
+      this.first.push(this.second.pop());
+    };
+    return record;
+  }
+
+  peek(){
+    while(this.first.peek()){
+      this.second.push(this.first.pop());
+    }
+    const record = this.second.peek(); // gives us ref to green record
+    while(this.second.peek()){
+      this.first.push(this.second.pop());
+    }
+    return record;
+  }
+}
 
 module.exports = Queue;
